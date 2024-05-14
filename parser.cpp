@@ -59,7 +59,7 @@ void Parser::ClassDeclaration() {
         match(ID);
     }
     match(L_BRACE);
-    while (ltoken->name == INTEGER_LITERAL || ltoken->name == BOOLEAN || ltoken->name == ID) {
+    while (ltoken->name == INT || ltoken->name == BOOLEAN || ltoken->name == ID) {
         VarDeclaration();
     }
     while (ltoken->name == PUBLIC) {
@@ -79,12 +79,12 @@ void Parser::MethodDeclaration() {
     Type();
     match(ID);
     match(L_PAREN);
-    if (ltoken->name == INTEGER_LITERAL || ltoken->name == BOOLEAN || ltoken->name == ID) {
+    if (ltoken->name == INT || ltoken->name == BOOLEAN || ltoken->name == ID) {
         Params();
     }
     match(R_PAREN);
     match(L_BRACE);
-    while (ltoken->name == INTEGER_LITERAL || ltoken->name == BOOLEAN || ltoken->name == ID) {
+    while (ltoken->name == INT || ltoken->name == BOOLEAN || ltoken->name == ID) {
         VarDeclaration();
     }
     while (ltoken->name == L_BRACE || ltoken->name == IF || ltoken->name == WHILE || ltoken->name == SYSTEM_OUT_PRINTLN || ltoken->name == ID) {
@@ -107,7 +107,7 @@ void Parser::Params() {
 }
 
 void Parser::Type() {
-    if (ltoken->name == INTEGER_LITERAL) {
+    if (ltoken->name == INT) {
         advance();
         if (ltoken->name == L_BRACKET) {
             advance();
@@ -220,7 +220,7 @@ void Parser::PrimExpression() {
         match(R_PAREN);
     } else if (ltoken->name == NEW) {
         advance();
-        if (ltoken->name == INTEGER_LITERAL) {
+        if (ltoken->name == INT) {
             advance();
             match(L_BRACKET);
             Expression();
