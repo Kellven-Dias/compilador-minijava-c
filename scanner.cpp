@@ -88,6 +88,8 @@ Token* Scanner::nextToken() {
                 tok = new Token(VOID, UNDEF);
             } else if (identifier == "while") {
                 tok = new Token(WHILE, UNDEF);
+            } else if (identifier == "System.out.println") {
+                tok = new Token(SYSTEM_OUT_PRINTLN, UNDEF);
             } else {
                 // Se não for uma palavra reservada, trata como um ID genérico
                 tok = new Token(ID, UNDEF);
