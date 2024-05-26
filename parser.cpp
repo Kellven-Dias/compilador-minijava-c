@@ -1,6 +1,10 @@
 #include "parser.h"
 
 Parser::Parser(string input) {
+    
+    currentST = globalST = new SymbolTable();
+    initSimbolTable();
+    
     scanner = new Scanner(input);
     advance();
 }
